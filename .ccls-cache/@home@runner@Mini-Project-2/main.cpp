@@ -20,7 +20,8 @@ class Graph
     }
   // Print MST using Prim's algorithm
     void primMST(){
-      
+      vector<int> visited;
+      vector<int> notVisited;
     }
 };
 // Allocates memory for adjacency list
