@@ -11,6 +11,8 @@ class Graph
   // Adjacency list representation
   // Pair of a neighbor vertex and a weight for every edge
   list<pair<int, int>> *adj;
+  vector<int> visited;
+  vector<int> notVisited;
   public:
     Graph(int V);
   // Function to add an edge to graph
@@ -20,8 +22,9 @@ class Graph
     }
   // Print MST using Prim's algorithm
     void primMST(){
-      vector<int> visited;
-      vector<int> notVisited;
+
+
+
     }
 };
 // Allocates memory for adjacency list
