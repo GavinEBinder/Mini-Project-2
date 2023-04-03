@@ -1,6 +1,9 @@
 #include <iostream>
 #include <list>
+#include <vector>
+#include <queue>
 using namespace std;
+#define inf 10000
 class Graph
 {
   //number of vertices
@@ -13,7 +16,7 @@ class Graph
   // Function to add an edge to graph
     void addEdge(int u, int v, int w){
       adj[u].push_back(make_pair(v, w));
-      adj[v].push_back(make_pair(u,w));
+      adj[v].push_back(make_pair(u, w));
     }
   // Print MST using Prim's algorithm
     void primMST(){
