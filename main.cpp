@@ -12,9 +12,8 @@ class Graph
     Graph(int V);
   // Function to add an edge to graph
     void addEdge(int u, int v, int w){
-      pair<int, int> pairToAdd;
-      pairToAdd = make_pair(u,v);
-      adj->push_back(pairToAdd);
+      adj[u].push_back(make_pair(v, w));
+      adj[v].push_back(make_pair(u,w));
     }
   // Print MST using Prim's algorithm
     void primMST(){
