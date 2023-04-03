@@ -17,7 +17,9 @@ class Graph
       adj->push_back(pairToAdd);
     }
   // Print MST using Prim's algorithm
-    void primMST();
+    void primMST(){
+      
+    }
 };
 // Allocates memory for adjacency list
 Graph::Graph(int V)
