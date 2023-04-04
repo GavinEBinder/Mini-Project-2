@@ -24,14 +24,22 @@ class Graph
       notVisited.push_back(make_pair(u,w));
     }
     void normalPrint(){
-      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
-      for(pair<int,int> x : *adj){
-        pq.push({x});
+      if (adj == nullptr) {
+        cout << "Error: adj pointer is null." << endl;
+        return;
       }
-      /*while(!pq.empty()){
-        cout << pq.top().first << pq.top().second << endl;
+      if (adj->empty()) {
+        cout << "Error: adj list is empty." << endl;
+        return;
+      }
+      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+      for (pair<int,int> x : *adj) {
+        pq.push(std::make_pair(x.first, x.second));
+      }
+      while(!pq.empty()){
+        cout << pq.top().first << " " << pq.top().second << endl;
         pq.pop();
-      }*/
+      }
     }
   // Print MST using Prim's algorithm
     void primMST(){
