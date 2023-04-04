@@ -4,56 +4,42 @@
 #include <queue>
 #include <utility>
 using namespace std;
-#define inf 10000
-class Graph
-{
-  //number of vertices
-  int V;
-  // Adjacency list representation
-  // Pair of a neighbor vertex and a weight for every edge
-  list<pair<int, int>> *adj;
-  vector<pair<int,int>> visited;
-  vector<pair<int,int>> notVisited;
+
+class Vertex {
   public:
-    Graph(int V);
-  // Function to add an edge to graph
-    void addEdge(int u, int v, int w){
-      adj[u].push_back(make_pair(v, w));
-      adj[v].push_back(make_pair(u, w));
-      notVisited.push_back(make_pair(v,w));
-      notVisited.push_back(make_pair(u,w));
-    }
-    void normalPrint(){
-      if (adj == nullptr) {
-        cout << "Error: adj pointer is null." << endl;
-        return;
-      }
-      if (adj->empty()) {
-        cout << "Error: adj list is empty." << endl;
-        return;
-      }
-      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
-      for (pair<int,int> x : *adj) {
-        pq.push(std::make_pair(x.first, x.second));
-      }
-      while(!pq.empty()){
-        cout << pq.top().first << " " << pq.top().second << endl;
-        pq.pop();
-      }
-    }
-  // Print MST using Prim's algorithm
-    void primMST(){
-      for(pair<int,int> V : notVisited){
-        
-      }
+    int cost = std::numeric_limits<int>::max();
+    Vertex * prev;
+    
+    Vertex() {
+
     }
 };
-// Allocates memory for adjacency list
-Graph::Graph(int V)
+
+class Edge {
+  public:
+    int weight;
+};
+
+class Graph
 {
-  this->V = V;
-  adj = new list<pair<int, int>> [V];
-}
+  public:
+    vector<Vertex*> verticies;
+    Graph(int V) {
+      for (int i = 0; i <= V; i++) {
+        verticies.push_back(new Vertex());
+      }
+      
+    }
+  // Function to add an edge to graph
+    void addEdge(int u, int v, int weight){
+      
+    }
+
+  // Print MST using Prim's algorithm
+    void primMST(){
+      
+    }
+};
 
 int main() {
   int V = 8;
@@ -73,7 +59,6 @@ int main() {
   g.addEdge(6, 7, 15);
   g.addEdge(6, 8, 11);
   g.addEdge(7, 8, 10);
-  g.normalPrint();
-  //g.primMST();
+  g.primMST();
 return 0;
 }
