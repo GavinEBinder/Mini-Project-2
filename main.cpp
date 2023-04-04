@@ -25,6 +25,14 @@ class Graph
   // Print MST using Prim's algorithm
     void primMST(){
 
+      vector<int> cost(V,inf);
+      vector<int> previous(V,NULL);
+
+      cost[0] = 0;
+
+      priority_queue<pair<int,int>, vector<pair<int,int>> ,greater<pair<int,int>>> pq;
+
+
 
 
     }
