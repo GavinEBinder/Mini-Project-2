@@ -2,6 +2,7 @@
 #include <list>
 #include <vector>
 #include <queue>
+#include <utility>
 using namespace std;
 #define inf 10000
 class Graph
@@ -22,11 +23,21 @@ class Graph
       notVisited.push_back(make_pair(v,w));
       notVisited.push_back(make_pair(u,w));
     }
+    void normalPrint(){
+      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+      for(pair<int,int> x : *adj){
+        pq.push({x});
+      }
+      /*while(!pq.empty()){
+        cout << pq.top().first << pq.top().second << endl;
+        pq.pop();
+      }*/
+    }
   // Print MST using Prim's algorithm
     void primMST(){
-
-
-
+      for(pair<int,int> V : notVisited){
+        
+      }
     }
 };
 // Allocates memory for adjacency list
@@ -54,6 +65,7 @@ int main() {
   g.addEdge(6, 7, 15);
   g.addEdge(6, 8, 11);
   g.addEdge(7, 8, 10);
-  g.primMST();
+  g.normalPrint();
+  //g.primMST();
 return 0;
 }

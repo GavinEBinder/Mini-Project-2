@@ -2,6 +2,7 @@
 #include <list>
 #include <vector>
 #include <queue>
+#include <utility>
 using namespace std;
 #define inf 10000
 class Graph
@@ -11,17 +12,32 @@ class Graph
   // Adjacency list representation
   // Pair of a neighbor vertex and a weight for every edge
   list<pair<int, int>> *adj;
+  vector<pair<int,int>> visited;
+  vector<pair<int,int>> notVisited;
   public:
     Graph(int V);
   // Function to add an edge to graph
     void addEdge(int u, int v, int w){
       adj[u].push_back(make_pair(v, w));
       adj[v].push_back(make_pair(u, w));
+      notVisited.push_back(make_pair(v,w));
+      notVisited.push_back(make_pair(u,w));
+    }
+    void normalPrint(){
+      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+      for(pair<int,int> x : *adj){
+        pq.push({x});
+      }
+      /*while(!pq.empty()){
+        cout << pq.top().first << pq.top().second << endl;
+        pq.pop();
+      }*/
     }
   // Print MST using Prim's algorithm
     void primMST(){
-      vector<int> visited;
-      vector<int> notVisited;
+      for(pair<int,int> V : notVisited){
+        
+      }
     }
 };
 // Allocates memory for adjacency list
@@ -49,6 +65,7 @@ int main() {
   g.addEdge(6, 7, 15);
   g.addEdge(6, 8, 11);
   g.addEdge(7, 8, 10);
-  g.primMST();
+  g.normalPrint();
+  //g.primMST();
 return 0;
 }
