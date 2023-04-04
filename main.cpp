@@ -11,27 +11,38 @@ class Graph
   // Adjacency list representation
   // Pair of a neighbor vertex and a weight for every edge
   list<pair<int, int>> *adj;
-  vector<pair<int,int>> visited;
-  vector<pair<int,int>> notVisited;
   public:
     Graph(int V);
   // Function to add an edge to graph
     void addEdge(int u, int v, int w){
       adj[u].push_back(make_pair(v, w));
       adj[v].push_back(make_pair(u, w));
-      notVisited.push_back(make_pair(v,w));
-      notVisited.push_back(make_pair(u,w));
     }
   // Print MST using Prim's algorithm
     void primMST(){
 
       vector<int> cost(V,inf);
-      vector<int> previous(V,NULL);
+      vector<int> previous(V,-1);
 
       cost[0] = 0;
 
       priority_queue<pair<int,int>, vector<pair<int,int>> ,greater<pair<int,int>>> pq;
 
+
+      for(auto x : *adj)
+      {
+
+        cout << "Test";
+
+      }
+
+      while(!pq.empty())
+      {
+
+
+
+      }
+      
 
 
 
@@ -42,6 +53,13 @@ Graph::Graph(int V)
 {
   this->V = V;
   adj = new list<pair<int, int>> [V];
+
+  for(int i = 0; i < V; i++)
+  {
+
+    adj[i] = list<pair<int,int>>();
+
+  }
 }
 
 int main() {
