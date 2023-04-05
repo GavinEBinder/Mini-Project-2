@@ -8,7 +8,7 @@ class Graph
 {
   public:
     int numVertices;
-    int infinity = std::numeric_limits<int>::max();
+    int infinity = 1000000;
     std::list<std::pair<int,int>> *adjacent;
 
     Graph(int _numVertices) {
