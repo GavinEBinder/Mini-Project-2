@@ -3,47 +3,69 @@
 #include <vector>
 #include <queue>
 #include <utility>
-using namespace std;
-
-class Vertex {
-  public:
-    int cost = std::numeric_limits<int>::max();
-    Vertex * prev;
-    
-    Vertex() {
-
-    }
-};
-
-class Edge {
-  public:
-    int weight;
-};
 
 class Graph
 {
   public:
-    vector<Vertex*> verticies;
-    Graph(int V) {
-      for (int i = 0; i <= V; i++) {
-        verticies.push_back(new Vertex());
-      }
-      
+    int numVertices;
+    int infinity = std::numeric_limits<int>::max();
+    std::list<std::pair<int,int>> *adjacent;
+
+    Graph(int _numVertices) {
+      numVertices = _numVertices;
+      adjacent = new std::list<std::pair<int, int>>[numVertices];
     }
+
   // Function to add an edge to graph
-    void addEdge(int u, int v, int weight){
-      
+    void addEdge(int u, int v, int w){
+      //first = vertex, second = weight
+      adjacent[u].push_back(std::make_pair(v,w));
+      adjacent[v].push_back(std::make_pair(u,w));
     }
 
   // Print MST using Prim's algorithm
     void primMST(){
+      std::vector<int> cost(numVertices, infinity);
+      std::vector<int> prev(numVertices, -1);
+      std::vector<bool> known(numVertices, false);
+
+      int start = 0;
+      cost[start] = 0;
+
+      std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> priorityQueue;
+
+      //first = weight, second = vertex
+      priorityQueue.push(std::make_pair(0, start));
+
+      while (!priorityQueue.empty()) {
+        int v = priorityQueue.top().second;
+        priorityQueue.pop();
+
+        if (!known[v]) {
+          known[v] = true;
+          int n = adjacent[v].size();
+          for (int i = 0; i < n; i++) {
+            int z = adjacent[v].front().first;
+            int zNewCost = adjacent[v].front().second;
+            if (cost[z] > zNewCost && !known[z]) {
+              cost[z] = zNewCost;
+              prev[z] = v;
+              priorityQueue.push(std::make_pair(cost[z], z));
+            }
+            adjacent[v].pop_front();
+          }
+        }
+      }
       
+      for (int i = 1; i < numVertices; i++) {
+        std::cout << prev[i] << " - " << i << " | " << cost[i] << std::endl;
+      }
     }
 };
 
 int main() {
-  int V = 8;
-  Graph g(V);
+  int numVertices = 9;
+  Graph g(numVertices);
   g.addEdge(0, 1, 5);
   g.addEdge(0, 2, 9);
   g.addEdge(1, 4, 9);
