@@ -26,7 +26,7 @@ class Graph
   // Print MST using Prim's algorithm
     void primMST(){
       std::vector<int> cost(numVertices, infinity);
-      std::vector<int> prev(numVertices, -1);
+      std::vector<int> prev(numVertices, NULL);
       std::vector<bool> known(numVertices, false);
 
       int start = 0;
