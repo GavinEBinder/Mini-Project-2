@@ -1,3 +1,7 @@
+//Alexander Go
+//Gavin Binder
+//Gabriel Lopez
+//4-10-2023
 #include <iostream>
 #include <list>
 #include <vector>
